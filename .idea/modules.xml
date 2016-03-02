@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dubbo-practice-samples.iml" filepath="$PROJECT_DIR$/dubbo-practice-samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hongbao-api/hongbao-api.iml" filepath="$PROJECT_DIR$/hongbao-api/hongbao-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hongbao-consumer/hongbao-consumer.iml" filepath="$PROJECT_DIR$/hongbao-consumer/hongbao-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hongbao-provider/hongbao-provider.iml" filepath="$PROJECT_DIR$/hongbao-provider/hongbao-provider.iml" />
+    </modules>
+  </component>
+</project>

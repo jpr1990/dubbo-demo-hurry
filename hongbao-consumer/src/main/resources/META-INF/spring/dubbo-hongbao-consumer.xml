@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 扫描注解包路径(如果不扫描注解,可注释掉该行标签)，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 -->
+    <dubbo:annotation />
+    <!--<dubbo:annotation package="com.nnface.dubbo.hongbao,com.nnface.dubbo.demo" />-->
+
+    <dubbo:application name="hongbao-service-consumer" owner="hurry-hongbao-client" organization="dubbox"/>
+
+    <!--<dubbo:registry address="zookeeper://127.0.0.1:2181"/>-->
+    <dubbo:registry address="zookeeper://192.168.0.179:2181"/>
+    <!--<dubbo:registry id="registry-cd" address="zookeeper://192.168.0.179:2181"/>-->
+
+    <dubbo:protocol name="dubbo" port="20881" />
+    <!--uncomment this if you want to test dubbo's monitor-->
+    <!-- <dubbo:monitor protocol="registry"/ -->
+
+
+    <!--定义具体业务处理类,指定服务的版本version,还可以指定具体处理的注册中心registry  ;分组 group="service.hongbao"；超时 timeout="10000"-->
+    <dubbo:reference id="hongbaoService" interface="com.nnface.dubbo.service.HongbaoService"  protocol="dubbo" group="*"  version="1.2"/>
+    <!--<dubbo:reference id="hongbaoService" interface="com.nnface.dubbo.service.HongbaoService" retries="0" timeout="10000" version="1.0" registry="registry-cd"/>-->
+
+
+   <!-- directly connect to provider to simulate the access to non-dubbo rest services -->
+  <!--   <dubbo:reference id="anotherUserRestService" interface="com.alibaba.dubbo.demo.user.facade.AnotherUserRestService" url="rest://localhost/dubbo-demo-provider/services/"/> -->
+  <!--    <dubbo:reference id="userRestService" interface="com.alibaba.dubbo.demo.user.facade.UserRestService"   url="rest://localhost/dubbo-demo-provider/services/"/> -->
+
+
+    <!-- 定义Dubbo消费类 -->
+    <bean class="com.nnface.dubbo.hongbao.HongbaoConsumerAction" init-method="start">
+        <property name="hongbaoService" ref="hongbaoService"/>
+    </bean>
+
+
+
+</beans>
